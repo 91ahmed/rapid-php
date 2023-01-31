@@ -1,0 +1,24 @@
+{
+    "name": "phpmvc/rapidmvc",
+    "description": "Rapidmvc is a php mvc framework for rapid development.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rapidmvc\\": "services/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ahmedhassan",
+            "email": "ahmedh12491@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/psr7": "^2.4",
+        "jenssegers/blade": "^1.4",
+        "bramus/router": "~1.6",
+        "rakit/validation": "^1.4",
+        "statickidz/php-google-translate-free": "^1.2"
+    }
+}
