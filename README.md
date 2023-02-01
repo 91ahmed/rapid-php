@@ -1,35 +1,36 @@
 # Rapidmvc
 PHP mvc framework for easy and rapid web development.
 
+### Framework Directory Structure
 ```bash
 Rapidmvc
 │ 
-├───app                 # Core folder for mvc structure	
+├───app               # The core folder of mvc structure.
 │   ├───controller
 │   ├───model
 │   └───view
 │
-├───bootstrap           # Include the application autoloader
+├───bootstrap         # Contains the framework autoloader and bootstrap files.
 │ 
-├───cache               # Store system and view cache
+├───cache             # Contains the system cache file.
 │   └───blade
 │ 
-├───config
+├───config            # Contains the configuration files.
 │ 
-├───helpers
+├───helpers           # Contains the framework helper functions.
 │ 
-├───public
+├───public            # Contains webpage assets (js, css, images).
 │   └───assets
 │       ├───css
 │       ├───images
 │       └───js
 │ 
-├───routes
+├───routes            # Contain the router file.
 │ 
-├───services
+├───services          # Contains the framework core services.
 │ 
-├───storage
+├───storage           # Contains data and sessions storage.
 │   └───sessions
 │ 
-└───vendor
+└───vendor            # Contains composer packages.
 ```
