@@ -4,14 +4,14 @@ PHP mvc framework for easy and rapid web development.
 ```bash
 Rapidmvc
 │ 
-├───app						# Core folder for mvc structure	
+├───app                 # Core folder for mvc structure	
 │   ├───controller
 │   ├───model
 │   └───view
 │
-├───bootstrap				# Include the application autoloader
+├───bootstrap           # Include the application autoloader
 │ 
-├───cache					# Store system and view cache
+├───cache               # Store system and view cache
 │   └───blade
 │ 
 ├───config
