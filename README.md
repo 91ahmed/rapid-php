@@ -1,7 +1,7 @@
 # Rapidmvc
 PHP mvc framework for easy and rapid web development.
 
-### Framework Directory Structure
+### Directory Structure
 ```bash
 Rapidmvc
 │ 
