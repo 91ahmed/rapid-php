@@ -19,7 +19,7 @@
 		// Database
 		'db_driver' => 'mysql',
 		'db_host' => 'localhost',
-		'db_name' => 'rapidmvc',
+		'db_name' => 'test',
 		'db_user' => 'root',
 		'db_password' => '',
 		'db_port' => 3306,

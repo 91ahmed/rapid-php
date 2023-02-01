@@ -36,7 +36,7 @@
 	}
 
 	/**
-	 *	Get data from the configuration file.
+	 *	Get the data from configuration file.
 	 *	
 	 *	@param string $key
 	 *
@@ -44,14 +44,9 @@
 	 */
 	function config (string $key) 
 	{
-		$data = null;
-		$file = ROOT.'config'.DS.'app.php';
-
-		if (is_file($file) && file_exists($file)) 
-		{
-			$data = require_once($file);
-		}
-
+		$data = require (ROOT.'config'.DS.'app.php');
 		return $data[$key];
+			
+		return $data;
 	}
 ?>

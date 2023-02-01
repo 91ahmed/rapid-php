@@ -3,11 +3,6 @@
     "description": "Rapidmvc is a php mvc framework for rapid development.",
     "type": "project",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Rapidmvc\\": "services/"
-        }
-    },
     "authors": [
         {
             "name": "ahmedhassan",
