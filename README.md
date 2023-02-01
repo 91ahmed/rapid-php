@@ -27,9 +27,13 @@ Rapidmvc
 │ 
 ├───routes            # Contain the router file.
 │ 
-├───services          # Contains the framework core services.
+├───services          # Contains the framework core services (classes).
 │ 
 ├───storage           # Contains data and sessions storage.
+│   └───data
+│       ├───array
+│       ├───json
+│       └───sqlite
 │   └───sessions
 │ 
 └───vendor            # Contains composer packages.
