@@ -12,14 +12,14 @@ Rapidmvc
 │
 ├───bootstrap         # Contains the framework autoloader and bootstrap files.
 │ 
-├───cache             # Contains the system cache file.
+├───cache             # Contains the framework cache files.
 │   └───blade
 │ 
 ├───config            # Contains the configuration files.
 │ 
 ├───helpers           # Contains the framework helper functions.
 │ 
-├───public            # Contains webpage assets (js, css, images).
+├───public            # Contains web assets (js, css, images).
 │   └───assets
 │       ├───css
 │       ├───images
