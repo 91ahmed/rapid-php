@@ -2,9 +2,9 @@
 	
 	namespace App\Model;
 
-	use Services\Query\Model;
+	use Rapidmvc\Db\Model;
 
-	class User extends Model 
+	class User extends Model
 	{
 		public static $table = 'users';
 	}

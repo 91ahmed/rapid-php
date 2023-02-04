@@ -1,9 +1,9 @@
 <?php
 	
-	namespace Services\Query;
+	namespace Rapidmvc\Db;
 
-	use Services\Query\Connect;
-	use Services\Query\Builder;
+	use Rapidmvc\Db\Connect;
+	use Rapidmvc\Db\Builder;
 
 	class Model extends Builder
 	{

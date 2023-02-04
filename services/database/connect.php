@@ -1,6 +1,6 @@
 <?php
 	
-	namespace Services\Query;
+	namespace Rapidmvc\Db;
 
 	class Connect
 	{

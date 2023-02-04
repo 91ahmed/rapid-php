@@ -1,9 +1,10 @@
 <?php
 	
-	namespace Services\Query;
+	namespace Rapidmvc\Db;
 
 	/**
 	 *  PHP Query Builder
+	 *
 	 *	@author (ahmed hassan)
 	 */
 	class Builder
