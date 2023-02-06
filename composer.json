@@ -4,8 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Rapidmvc\\App\\": "services/app",
-            "Rapidmvc\\Db\\": "services/database"
+            "Rapidmvc\\Db\\": "core/database"
         }
     },
     "authors": [

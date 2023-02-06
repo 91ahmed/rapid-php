@@ -17,6 +17,8 @@ Rapidmvc
 │ 
 ├───config            # Configuration files.
 │ 
+├───core              # Framework core classes.
+│
 ├───helpers           # Helpers functions.
 │ 
 ├───public            # Web assets (js, css, images).
@@ -26,8 +28,6 @@ Rapidmvc
 │       └───js
 │ 
 ├───routes            # Web routes.
-│ 
-├───services          # Framework core classes.
 │ 
 ├───storage           # Data and sessions storage.
 │   └───data
