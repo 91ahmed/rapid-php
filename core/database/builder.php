@@ -1,6 +1,6 @@
 <?php
 	
-	namespace Rapidmvc\Db;
+	namespace Core\Db;
 
 	/**
 	 *  PHP Query Builder

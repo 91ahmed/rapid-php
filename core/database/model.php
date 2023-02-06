@@ -1,9 +1,9 @@
 <?php
 	
-	namespace Rapidmvc\Db;
+	namespace Core\Db;
 
-	use Rapidmvc\Db\Connect;
-	use Rapidmvc\Db\Builder;
+	use Core\Db\Connect;
+	use Core\Db\Builder;
 
 	class Model extends Builder
 	{
