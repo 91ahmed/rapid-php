@@ -2,7 +2,7 @@
 	
 	namespace App\Model;
 
-	use Rapidmvc\Db\Model;
+	use Core\Db\Model;
 
 	class User extends Model
 	{

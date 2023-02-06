@@ -1,10 +1,10 @@
 {
-    "name": "ahmed/rapidmvc",
-    "description": "Rapidmvc is a php mvc framework for rapid development.",
+    "name": "rapid/rapidmvc",
+    "description": "MVC framework for rapid development.",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Rapidmvc\\Db\\": "core/database"
+            "Core\\Db\\": "core/database"
         }
     },
     "authors": [
