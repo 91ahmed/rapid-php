@@ -2,7 +2,7 @@
 <?php $__env->startSection('title', 'RapidMvc'); ?>
 
 <?php $__env->startSection('content'); ?>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Repository</th>

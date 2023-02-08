@@ -2,7 +2,7 @@
 @section('title', 'RapidMvc')
 
 @section('content')
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Repository</th>
