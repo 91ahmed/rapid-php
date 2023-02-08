@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Home</title>
-	</head>
-	<body>
+
+<?php $__env->startSection('title', 'RapidMvc'); ?>
+
+<?php $__env->startSection('content'); ?>
 		<table>
 			<thead>
 				<tr>
@@ -20,5 +18,5 @@
 				</tr>
 			</tbody>
 		</table>
-	</body>
-</html><?php /**PATH C:\xampp\htdocs\Rapidmvc\app\view/home.blade.php ENDPATH**/ ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Rapidmvc\app\view/home.blade.php ENDPATH**/ ?>

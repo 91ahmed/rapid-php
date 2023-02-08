@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Home</title>
-	</head>
-	<body>
+@extends('layout/main')
+@section('title', 'RapidMvc')
+
+@section('content')
 		<table>
 			<thead>
 				<tr>
@@ -20,5 +18,4 @@
 				</tr>
 			</tbody>
 		</table>
-	</body>
-</html>
+@endsection
