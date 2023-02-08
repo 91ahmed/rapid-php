@@ -2,19 +2,18 @@
 	
 	namespace App\Controller;
 
-	use App\Model\User;
-
 	class HomeController
 	{
 		
 		public function index ()
 		{
-			$users = User::execute()->all()->get();
+			$users = (object) [
+				'repo' => '91ahmed/Rapidmvc', 
+				'author' => 'ahmed hassan', 
+				'email' => 'ahmedh12491@gmail.com'
+			];
 
-			var_dump($users);
-			exit();
-
-			return view('home', compact('welcome'));
+			return view('home', compact('users'));
 		}
 	}
 ?>
