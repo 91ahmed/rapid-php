@@ -2,58 +2,47 @@
 	
 	namespace Core\Db;
 
+	use Core\Db\Database;
 	use Core\Db\Connect;
-	use Core\Db\Builder;
 
-	class Model extends Builder
+	/**
+	 *	Database Model
+	 *
+	 *	@author ahmed hassan
+	 *	@link https://91ahmed.github.io
+	 */
+	class Model extends Database
 	{
-		public $connect;
-
+		/**
+		 *	Set the database connection.
+		 *
+		 *	@return object
+		 */
 		public function __construct ()
 		{
-			$this->connect = new Connect;
+			// Pdo connection
+			$conn = new Connect();
+
+			$conn->set('driver',   config('db_driver'));
+			$conn->set('host',     config('db_host'));
+			$conn->set('database', config('db_name'));
+			$conn->set('user',     config('db_user'));
+			$conn->set('password', config('db_password'));
+			$conn->set('port',     config('db_port'));
+			$conn->set('charset',  config('db_charset'));
+			$conn->set('sslmode',  config('db_sslmode'));
+
+			$this->pdo = $conn->pdo();
 		}
 
-		public function get ()
-		{
-			$stmt  = $this->connect->open()->prepare($this->query);
-			$stmt->execute();
-
-			$data = $stmt->fetchAll();
-
-			return $data;
-		}
-
-		public function first ()
-		{
-			$stmt = $this->connect->open()->prepare($this->query);
-			$stmt->execute();
-
-			$data = $stmt->fetchColumn();
-
-			return $data;
-		}
-
-		public function save ()
-		{
-			$stmt = $this->connect->open()->prepare($this->query);
-
-			foreach ($this->data as $column => $value) {
-				$stmt->bindValue(':'.$column, $value);
-			}
-
-			$stmt->execute();			
-		}
-
-		public static function model ()
+		/**
+		 *	Return current object.
+		 *
+		 *	@return object
+		 */
+		public static function execute ()
 		{
 			return new static();
-		}
-
-		public function __destruct ()
-		{
-			$this->connect->close();
-			unset($this->connect);
 		}
 	}
 ?>

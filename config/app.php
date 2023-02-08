@@ -23,6 +23,7 @@
 		'db_user' => 'root',
 		'db_password' => '',
 		'db_port' => 3306,
-		'db_charset' => 'utf8'
+		'db_charset' => 'utf8',
+		'db_sslmode' => 'disable' // disable - require
 	];
 ?>

@@ -3,14 +3,26 @@
 	namespace Core\Db;
 
 	/**
-	 *  PHP Query Builder
+	 *	sql query builder
 	 *
-	 *	@author (ahmed hassan)
+	 *	@author ahmed hassan
+	 *	@link https://91ahmed.github.io
 	 */
 	class Builder
 	{
+		/**
+		 *	@var string, Holds the SQL Query.
+		 */
 		protected $query;
+
+		/**
+		 *	@var array, Holds the array of data.
+		 */
 		protected $data;
+
+		/**
+		 *	@var string, Holds the database table.
+		 */
 		protected static $table;
 
 		public function select ($columns)

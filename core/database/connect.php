@@ -2,263 +2,173 @@
 	
 	namespace Core\Db;
 
+	/**
+	 *	Database connection using PDO extension.
+	 *
+	 *	@author ahmed hassan
+	 *	@link https://91ahmed.github.io
+	 */
 	class Connect
 	{
-		
 		/**
-		 *	@var string $driver 
-		 *	(mysql - sqlsrv - pgsql - sqlite)
+		 *	@var array, database information
 		 */
-		private $driver;
-
-		/**
-		 *	@var string $host 
-		 *	(localhost - 127.0.0.1 - Your host url => https://www.example.com)
-		 */
-		private $host;
-
-		/**	
-		 *	@var string $database (database name) 
-		 */
-		private $database;
-
-		/** 
-		 *	@var string $username (database username) 
-		 */
-		private $username;
-
-		/** 
-		 *	@var string $password (database password) 
-		 */
-		private $password;
+		private $config = array(
+			'driver'   => 'mysql', // mysql - sqlsrv - pgsql - sqlite
+			'host'     => 'localhost', // localhost - 127.0.0.1 - https://www.example.com
+			'database' => 'test', // database name
+			'user'     => 'root', // database username
+			'password' => '', // database password
+			'port'     => 3306, // mysql (3306) - pgsql (5432) - sqlsrv (1433)
+			'charset'  => 'utf8',
+			'sslmode'  => 'disable'
+		);
 
 		/**
-		 *	@var integer $port 
-		 *	(mysql 3306 - pgsql 5432 - sqlsrv 1433)
-		 */
-		private $port;
-
-		/**
-		 *	@var string $charset (database charset) 
-		 */
-		private $charset;
-
-		/**
-		 *	@var object $connect
-		 *	Holds the PDO connection object.
-		 */
-		private $connect;
-
-		/**
-		 *	@var string $sqlitePath, store the sqlite embeded file path.
-		 */
-		private $sqlitePath = 'storage/sqlite/restful.db';
-
-		/**
-		 *	@var array $options, PDO mysql configuration options
+		 *	@var array $options, PDO mysql options.
 		 */
 		private $options = [
 			\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8',
 		];
 
 		/**
-		 *	Open database connection
-		 *
-		 *	@return object, database connect
+		 *	@var array $attributes, PDO attributes.
 		 */
-		public function open () 
-		{
-			// Set database default informations
-			$this->setDriver(config('db_driver'));
-			$this->setHost(config('db_host'));
-			$this->setDatabase(config('db_name'));
-			$this->setUsername(config('db_user'));
-			$this->setPassword(config('db_password'));
-			$this->setPort(config('db_port'));
-			$this->setCharset(config('db_charset'));
-
-			try {
-
-				$this->checkDriver();
-
-			}catch(\PDOException $e) {
-				
-				exit($e->getMessage());
-			}
-
-			// Set PDO attributes
-			$this->setPdoAttributes();
-
-			return $this->connect;
-		}
+		private $attributes = [
+			\PDO::ATTR_EMULATE_PREPARES => false,
+			\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+			\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
+			\PDO::ATTR_CASE => \PDO::CASE_NATURAL
+		];
 
 		/**
-		 *	Close database connection
-		 *
-		 *	@return void
+		 *	@var object $connect, Holds PDO connection object.
 		 */
-		public function close () 
-		{
-			$this->connect = null;
-		}
+		private $connect;
 
 		/**
-		 *	Check database driver
+		 *	@var string $sqlite, store the sqlite file path.
 		 */
-		public function checkDriver ()
-		{
-			if ($this->driver === 'mysql') {
-				$this->mysql();
-			} elseif ($this->driver === 'pgsql') {
-				$this->postgresql();
-			} elseif ($this->driver === 'sqlsrv') {
-				$this->sqlserver();
-			} elseif ($this->driver === 'sqlite') {
-				$this->sqlite();
-			} else {
-				throw new Exception("Undefined database driver ({$this->driver})", 1);
-			}
-		}
-
-		/** 
-		 *	Set common PDO attributes.
-		 *
-		 *	@return void
-		 */
-		private function setPdoAttributes ()
-		{
-			$this->connect->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
-			$this->connect->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-			$this->connect->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-			$this->connect->setAttribute(\PDO::ATTR_CASE, \PDO::CASE_NATURAL);
-		}
+		private $sqlite = 'storage/sqlite/restful.db';
 
 		/**
-		 *	Connect pdo with mysql.
+		 *	Connect to MySQL.
 		 *
 		 *	@return void
 		 */
 		private function mysql ()
 		{
-			$this->connect = new \PDO("mysql:host={$this->host};port={$this->port};dbname={$this->database};charset={$this->charset}", $this->username, $this->password, $this->options);
+			$this->connect = new \PDO("mysql:host={$this->config['host']};port={$this->config['port']};dbname={$this->config['database']};charset={$this->config['charset']}", $this->config['user'], $this->config['password'], $this->options);
 		}
 
 		/**
-		 *	Connect pdo with postgresql.
+		 *	Connect to PostgreSQL.
 		 *
 		 *	@return void
 		 */
 		private function postgresql ()
 		{
-			$this->connect = new \PDO("pgsql:host={$this->host};port={$this->port};dbname={$this->database}", $this->username, $this->password);
+			$this->connect = new \PDO("pgsql:host={$this->config['host']};port={$this->config['port']};dbname={$this->config['database']};sslmode={$this->config['sslmode']}", $this->config['user'], $this->config['password']);
 		}
 
 		/**
-		 *	Connect pdo with sql server.
+		 *	Connect to Microsoft SQL Server.
 		 *
 		 *	@return void
 		 */
 		private function sqlserver ()
 		{
-			$this->connect = new \PDO("sqlsrv:Server=".$this->host.";Database=".$this->database."", $this->username, $this->password);
+			$this->connect = new \PDO("sqlsrv:Server=".$this->config['host'].";Database=".$this->config['database']."", $this->config['user'], $this->config['password']);
 		}
 
 		/**
-		 *	Connect pdo with sqlite
+		 *	Connect to SQLite
 		 *
 		 *	@return void
 		 */
 		private function sqlite ()
 		{
-			$this->connect = new \PDO("sqlite:".$this->sqlitePath);
+			$this->connect = new \PDO("sqlite:".$this->sqlite);
 		}
 
 		/**
-		 *	Set the database driver
+		 *	Set connection information.
 		 *
-		 *	@var string, $driver
+		 *	@param string $key, database config key
+		 *	@param mixed $value, database config value
 		 *	@return void
 		 */
-		public function setDriver ($driver) 
+		public function set ($key, $value)
 		{
-			$this->driver = $driver;
+			$this->config[$key] = $value;
 		}
 
 		/**
-		 *	Set the database host
+		 *	Set PDO attributes.
 		 *
-		 *	@var string, $host
+		 *	@param mixed $key, attribute key
+		 *	@param mixed $value, attribute value
 		 *	@return void
 		 */
-		public function setHost ($host) 
+		public function attr ($key, $value)
 		{
-			$this->host = $host;
+			$this->attributes[$key] = $value;
 		}
 
 		/**
-		 *	Set the database name
+		 *	Check the database driver to execute PDO connection.
 		 *
-		 *	@var string, $database
 		 *	@return void
 		 */
-		public function setDatabase ($database) 
+		private function detectDriver ()
 		{
-			$this->database = $database;
+			switch ($this->config['driver'])
+			{
+				case 'mysql':
+					$this->mysql();
+					break;
+				case 'pgsql':
+					$this->postgresql();
+					break;
+				case 'sqlsrv':
+					$this->sqlserver();
+					break;
+				case 'sqlite':
+					$this->sqlite();
+					break;
+				default:
+					throw new \Exception("Undefined database driver ({$this->config['driver']})", 1);
+			}
 		}
 
 		/**
-		 *	Set the database username
+		 *	Open database connection
 		 *
-		 *	@var string, $username
-		 *	@return void
+		 *	@return object, PDO connection
 		 */
-		public function setUsername ($username) 
+		public function pdo ()
 		{
-			$this->username = $username;
+			try 
+			{
+				$this->detectDriver();
+			}
+			catch (\PDOException $e) 
+			{
+				throw new \Exception($e->getMessage(), 1);
+			}
+
+			// Loop on PDO attributes array
+			foreach ($this->attributes as $key => $value) 
+			{
+				$this->connect->setAttribute($key, $value); // set attribute
+			}
+
+			return $this->connect;
 		}
 
-		/**
-		 *	Set the database password
-		 *
-		 *	@var string, $password
-		 *	@return void
-		 */
-		public function setPassword ($password) 
+		public function __destruct ()
 		{
-			$this->password = $password;
+			unset($this->connect);
 		}
-
-		/**
-		 *	Set the database port
-		 *
-		 *	@var integer, $port
-		 *	@return void
-		 */
-		public function setPort ($port) 
-		{
-			$this->port = $port;
-		}
-
-		/**
-		 *	Set the database charset
-		 *
-		 *	@var string, $charset
-		 *	@return void
-		 */
-		public function setCharset ($charset) 
-		{
-			$this->charset = $charset;
-		}
-
-		/**
-		 *	Set sqlite database file path
-		 *
-		 *	@var string, $path
-		 *	@return void
-		 */
-		public function setSqlitePath ($path)
-		{
-			$this->sqlitePath = $path;
-		}
- 	}
+	}
 ?>

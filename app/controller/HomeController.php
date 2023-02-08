@@ -9,7 +9,7 @@
 		
 		public function index ()
 		{
-			$users = User::model()->all()->get();
+			$users = User::execute()->all()->get();
 
 			var_dump($users);
 			exit();
