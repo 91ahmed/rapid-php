@@ -7,13 +7,13 @@
 		
 		public function index ()
 		{
-			$users = (object) [
+			$rapid = (object) [
 				'repo' => '91ahmed/Rapidmvc', 
 				'author' => 'ahmed hassan', 
-				'email' => 'ahmedh12491@gmail.com'
+				'link' => 'https://91ahmed.github.io'
 			];
 
-			return view('home', compact('users'));
+			return view('home', compact('rapid'));
 		}
 	}
 ?>

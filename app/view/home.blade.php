@@ -2,20 +2,19 @@
 @section('title', 'RapidMvc')
 
 @section('content')
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Repository</th>
-					<th>Author</th>
-					<th>E-mail</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>{{ $users->repo }}</td>
-					<td>{{ $users->author }}</td>
-					<td>{{ $users->email }}</td>
-				</tr>
-			</tbody>
-		</table>
+		<h1>Rapid Mvc</h1>
+		<p>
+		Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb. Use our utilities to add additional styles as desired.
+		</p>
+
+		<ul>
+			<li>
+				<span style="color: #E15948;">@author</span> 
+				<span style="color: #FFF;">{{ $rapid->author }}</span>
+			</li>
+			<li>
+				<span style="color: #E15948;">@link</span> 
+				<a href="{{ $rapid->link }}"><span style="color: #4CB7A6;">{{ $rapid->link }}</span></a>
+			</li>
+		</ul>
 @endsection
