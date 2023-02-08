@@ -1,5 +1,5 @@
 // Function To Create New Cookie 
-function ecCreateCookie(cookieName,cookieValue,daysToExpire)
+function raCreateCookie(cookieName,cookieValue,daysToExpire)
 {
     var date = new Date();
     date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
@@ -7,14 +7,14 @@ function ecCreateCookie(cookieName,cookieValue,daysToExpire)
 }
 
 // Function To Delete Existing Cookie
-function ecDeleteCookie(cookieName,cookieValue)
+function raDeleteCookie(cookieName,cookieValue)
 {
     var date = new Date(0).toGMTString();
     document.cookie = cookieName + "=" + cookieValue + "; expires=" + date;
 }
 
 // Function To Access Existing Cookie
-function ecAccessCookie(cookieName)
+function raAccessCookie(cookieName)
 {
     var name = cookieName + "=";
     var allCookieArray = document.cookie.split(';');
@@ -27,68 +27,4 @@ function ecAccessCookie(cookieName)
     }
 
     return "";
-}
-
-// Function To Check Existing Cookie
-function ecCheckCookie()
-{
-    var bgImageMode = ecAccessCookie("bgImageModeCookie");
-    if (bgImageMode != "")
-    {     
-        var bgIDClass = bgImageMode.split('||');
-        var bgID = bgIDClass[0];
-        var bgClass = bgIDClass[1];
-        
-        $("body").removeClass("body-bg-1");
-        $("body").removeClass("body-bg-2");
-        $("body").removeClass("body-bg-3");
-        $("body").removeClass("body-bg-4");
-    
-        $("body").addClass(bgClass);
-    
-        $("#bg-switcher-css").attr("href", "assets/css/backgrounds/" + bgID + ".css");
-    }
-
-    var rtlMode = ecAccessCookie("rtlModeCookie");
-    if (rtlMode != "")
-    {
-        // alert(rtlMode);    
-        var $link = $('<link>', {
-            rel: 'stylesheet',
-            href: 'assets/css/rtl.css',
-            class: 'rtl'
-        });
-        $(".ec-tools-sidebar .ec-change-rtl").toggleClass('active');
-        $link.appendTo('head');                
-    }
-
-    // ecCreateCookie('bgImgModeCookie',bgIDClass,1);
-
-    var darkMode = ecAccessCookie("darkModeCookie");
-    if (darkMode != "")
-    {
-        var $link = $('<link>', {
-            rel: 'stylesheet',
-            href: 'assets/css/dark.css',
-            class: 'dark'
-        });
-        
-        $("link[href='assets/css/responsive.css']").before($link);
-
-        $(".ec-tools-sidebar .ec-change-mode").toggleClass('active');
-        $("body").addClass("dark");
-    }
-    else
-    {
-        var themeColor = ecAccessCookie("themeColorCookie");
-        if (themeColor != "")
-        {
-            $('li[data-color = '+themeColor+']').toggleClass('active').siblings().removeClass('active');
-            $('li[data-color = '+themeColor+']').addClass('active');
-            
-            if(themeColor != '01'){
-                $("link[href='assets/css/responsive.css']").before('<link rel="stylesheet" href="assets/css/skin-'+themeColor+'.css" rel="stylesheet">');
-            }
-        }
-    }
 }
