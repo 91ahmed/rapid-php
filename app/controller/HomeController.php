@@ -10,7 +10,7 @@
 			$rapid = (object) [
 				'repo' => '91ahmed/Rapidmvc', 
 				'author' => 'ahmed hassan', 
-				'link' => 'https://91ahmed.github.io'
+				'link' => 'https://github.com/91ahmed/Rapidmvc'
 			];
 
 			return view('home', compact('rapid'));

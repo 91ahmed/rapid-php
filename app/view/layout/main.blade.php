@@ -12,7 +12,7 @@
 				text-align: center;
 				color: #FFF;
 				background-color: #202429;
-				padding: 50px;
+				padding: 100px 20px;
 			}
 			h1{
 				font-family: 'Kanit', sans-serif;
