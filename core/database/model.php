@@ -6,13 +6,19 @@
 	use Core\Db\Connect;
 
 	/**
-	 *	Database Model
+	 *	Database Model, this class includes methods that execute sql queries.
 	 *
 	 *	@author ahmed hassan
 	 *	@link https://91ahmed.github.io
 	 */
-	class Model extends Database
+	class Model extends Builder
 	{
+
+		/**
+		 *	@var object, holds PDO object.
+		 */
+		protected $pdo;
+
 		/**
 		 *	Set the database connection.
 		 *
@@ -33,6 +39,53 @@
 			$conn->set('sslmode',  config('db_sslmode'));
 
 			$this->pdo = $conn->pdo();
+		}
+
+		/**
+		 *	Execute sql query (fetch all columns).
+		 *
+		 *	@return resource
+		 */
+		public function get ()
+		{
+			$stmt  = $this->pdo->prepare($this->query);
+			$stmt->execute();
+
+			$data = $stmt->fetchAll();
+
+			return $data;
+		}
+
+		/**
+		 *	Execute sql query (fetch single column).
+		 *
+		 *	@return resource
+		 */
+		public function first ()
+		{
+			$stmt = $this->pdo->prepare($this->query);
+			$stmt->execute();
+
+			$data = $stmt->fetchColumn();
+
+			return $data;
+		}
+
+		/**
+		 *	Execute sql query to insert and update data.
+		 *
+		 *	@return void
+		 */
+		public function save ()
+		{
+			$stmt = $this->pdo->prepare($this->query);
+
+			foreach ($this->data as $column => $value) 
+			{
+				$stmt->bindValue(':'.$column, $value);
+			}
+
+			$stmt->execute();	
 		}
 
 		/**

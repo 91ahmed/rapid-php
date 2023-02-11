@@ -16,7 +16,7 @@
 			}
 			h1{
 				font-family: 'Kanit', sans-serif;
-				font-size: 40px !important;
+				font-size: 50px !important;
 			}
 			ul,li{
 				list-style: none;
