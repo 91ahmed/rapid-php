@@ -1,7 +1,7 @@
 # Rapidmvc
 MVC framework for rapid development.
 
-### Directory Structure
+### # Directory Structure
 ```bash
 Rapidmvc
 │ 
@@ -39,7 +39,7 @@ Rapidmvc
 └───vendor            # Composer packages.
 ```
 
-### Models
+### # Models
 Rapidmvc provides a simple data access layer that just works no matter what relational database you're using. but before you start useing models you should specify your database information in the configuration file located in this path ```config\app.php``` .
 
 ``` php
@@ -54,10 +54,10 @@ Rapidmvc provides a simple data access layer that just works no matter what rela
 	'db_sslmode' => 'disable' // disable - require
 ```
 
-##### Create Model
-The framework store models in ```app/model``` folder, all you need is to create php file in this folder with the database table name like this ```User.php``` .
+##### # Create Model
+The framework store model files in ```app/model``` folder, all you need is to create php file in this folder with the database table name like this ```User.php``` .
 
-Model file must have ```App\Model``` namespace and extend Model class and also must have ```$table``` property to specify table name like the example below:
+The model file must have ```App\Model``` namespace and extend Model class and also must have ```$table``` property to specify the table name like the example below:
 ``` php
 namespace App\Model;
 
@@ -69,7 +69,7 @@ class User extends Model
 }
 ```
 
-##### Use Model
+##### # How to Use Model
 Just use the namespace ```App\Model\YourModelName``` in the controller like the following example:
 ``` php
 namespace App\Controller;
@@ -88,7 +88,7 @@ class HomeController
 }
 ```
 
-### View
+### # Views
 To create view just go to the views path ```app/view``` and create php file with ```.blade``` like the following example: ```viewname.blade.php```
 The reasone why the file has ```.blade``` with the name because the framework use [Blade](http://laravel.com/docs/5.8/blade) as a **template engine** to make use of it's awesome features.
 
