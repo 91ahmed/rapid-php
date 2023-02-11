@@ -61,12 +61,27 @@
 		 *
 		 *	@return resource
 		 */
-		public function first ()
+		public function column ()
 		{
 			$stmt = $this->pdo->prepare($this->query);
 			$stmt->execute();
 
 			$data = $stmt->fetchColumn();
+
+			return $data;
+		}
+
+		/**
+		 *	Execute sql query (fetch single row).
+		 *
+		 *	@return resource
+		 */
+		public function first ()
+		{
+			$stmt = $this->pdo->prepare($this->query);
+			$stmt->execute();
+
+			$data = $stmt->fetch();
 
 			return $data;
 		}
@@ -80,9 +95,12 @@
 		{
 			$stmt = $this->pdo->prepare($this->query);
 
-			foreach ($this->data as $column => $value) 
+			if (!empty($this->data)) 
 			{
-				$stmt->bindValue(':'.$column, $value);
+				foreach ($this->data as $column => $value) 
+				{
+					$stmt->bindValue(':'.$column, $value);
+				}
 			}
 
 			$stmt->execute();	
